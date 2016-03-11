@@ -13,7 +13,7 @@
 
         <script src="js/libs/Observable.js"></script>
         <script src="js/views/ContactView.js"></script>
-        <script src="js/models/Contact.js"></script>
+        <script src="js/models/ContactDAO.js"></script>
         <script src="js/controllers/ContactController.js"></script>
         <script src="js/app.js"></script>
 
@@ -27,28 +27,28 @@
         <div data-role="page" data-theme="b" id="home">
             <header data-role="header">
                 <h1>Contacts</h1>
-                <a href="#addContact" class="ui-btn ui-icon-plus ui-btn-icon-left">Ajouter</a>
+                <a href="#pageFormContact" class="ui-btn ui-btn-right ui-icon-plus ui-btn-icon-left">Ajouter</a>
             </header>
             <div data-role="main" class="ui-content">
 
                 <ul data-role="listview" data-filter="true" data-filter-placeholder="Rechercher un contact..." data-filter-theme="a" data-inset="true">
-                    <li >
+                    <li>
                         <a href="#detailContact">
-                            <img src="img/avatarvide.png">
+                            <img id="photoContact"src="img/avatarvide.png">
                             <h2>Block Gabriel</h2>
                             <p>02.31.21.14.15</p>
                         </a>
                     </li>
                     <li >
-                        <a href="#">
-                            <img src="img/avatarvide.png">
+                        <a href="#detailContact">
+                            <img id="photoContact" src="img/avatarvide.png">
                             <h2>Poisson Benjamin</h2>
                             <p>02.31.21.14.15</p>
                         </a>
                     </li>
                     <li >
-                        <a href="#">
-                            <img src="img/avatarvide.png">
+                        <a href="#detailContact">
+                            <img id="photoContact" src="img/avatarvide.png">
                             <h2>Fournel Erwan</h2>
                             <p>02.31.21.14.15</p>
                         </a>
@@ -59,24 +59,23 @@
             <footer data-role="footer" data-position="fixed">
                 <h1>Imie</h1>
                 <div data-role="navbar">
-                <ul>
-                    <li><a href="#" class="ui-btn">A-Z</a></li>
-                    <li><a href="#" class="ui-btn">Z-A</a></li>    
-                </ul>
-                    
+                    <ul>
+                        <li><a href="#" class="ui-btn" id="sortAsc">A-Z</a></li>
+                        <li><a href="#" class="ui-btn" id="sortDesc">Z-A</a></li>    
+                    </ul>                  
                 </div>
 
             </footer>
         </div>
 
         <!-- Page ajouter/modifier un contact -->
-        <div data-role="page" data-theme= "b" id="addContact">
+        <div data-role="page" data-theme= "b" id="pageFormContact">
             <header data-role="header">
-                <h1>Ajouter</h1>
+                <h1 id="titleAddMod">Ajouter</h1>
                 <a href="#home" class="ui-btn ui-btn-inline ui-icon-delete ui-btn-icon-notext ui-corner-all"></a>
             </header>
             <div data-role="main" class="ui-content">
-                <form>
+                <form id="form">
                     <div class="ui-field-contain">
                         <label for="lastname"  class="ui-inline">Nom :</label>
                         <input type="text" name="lastname" id="lastname" class="ui-btn-inline" value"">
@@ -99,9 +98,9 @@
                     </div>
                     <div class="ui-field-contain">
                         <label for="photo">Photo :</label>
-                        <a href="" class="ui-btn">Photo</a>
+                        <a id="addPhoto" class="ui-btn">Photo</a>
                     </div>
-                        <input type="submit" value="valider">
+                        <input id="valid" type="submit" value="valider">
             </div>
         </div> 
 
@@ -113,19 +112,21 @@
             </header>
             <div data-role="main" class="ui-content"> 
             
+                <img id="photoContact" src="img/avatarvide.png">
+
             </div>
              <footer data-role="footer" data-position="fixed">
-                <div data-role="navbar">
-                <ul>
-                    <li><a href="#" class="ui-btn">A-Z</a></li>
-                    <li><a href="#" class="ui-btn">Z-A</a></li>    
-                </ul>
-                    
+                <a href="#popActions" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-bars ui-btn-icon-right ui-btn-b" data-transition="pop">Actions</a>
+                <div data-role="popup" id="popActions" data-theme="none">
+
+                    <h2 id="titleActions" style="margin:0" class="ui-content">Actions...</h2>
+                    <ul data-role="listview">
+                        <li data-icon="edit"><a id="modify" href="#pageFormContact" >Modifier</a></li>
+                        <li data-icon="delete"><a id="delete" href="#" >Supprimer</a></li>
+                    </ul>
+
                 </div>
-
             </footer>
-            </footer>
-
         </div>
         
 
