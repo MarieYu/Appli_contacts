@@ -64,10 +64,34 @@ ContactDAO.prototype.selectContact = function(id){
 
 ContactDAO.prototype.sortAscContact = function(){
 	this.notify({type: 'MODIFY_CONTACTS'});
-	return this._contacts.sort();
+	return this._contacts.sort(function(a, b){
+		var order = null;
+		if(a.getLastname() < b.getLastname()){
+			order = -1;
+		}
+		else if(a.getLastname() === b.getLastname()){
+			order= 0;
+		}
+		else{
+			order = 1;
+		}
+		return order;
+	});
 };
 
 ContactDAO.prototype.sortDescContact = function(){
 	this.notify({type: 'MODIFY_CONTACTS'});
-	return this._contacts.reverse();
+	return this._contacts.sort(function(a, b){
+		var order = null;
+		if(a.getLastname() < b.getLastname()){
+			order = 1;
+		}
+		else if(a.getLastname() === b.getLastname()){
+			order= 0;
+		}
+		else{
+			order = -1;
+		}
+		return order;
+	});
 };
